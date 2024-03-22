@@ -6,6 +6,7 @@ use Lle\BiBundle\Contracts\ReportPartBuilderInterface;
 use Lle\BiBundle\Entity\ReportPart;
 use voilab\tctable\plugin\FitColumn;
 use voilab\tctable\plugin\StripeRows;
+use voilab\tctable\plugin\Widows;
 use voilab\tctable\TcTable;
 
 class TablePartBuilder implements ReportPartBuilderInterface
@@ -25,6 +26,7 @@ class TablePartBuilder implements ReportPartBuilderInterface
             ];
         }
         $tctable->addPlugin(new FitColumn(end($fields)->getCode()));
+        $tctable->addPlugin(new Widows(4, 20));
         $tctable->setColumns($cols);
 
         // get rows data
