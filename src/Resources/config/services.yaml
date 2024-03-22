@@ -11,3 +11,9 @@ services:
         public: true
         arguments:
             - !tagged_iterator lle_bi.part_builder
+
+    Lle\BiBundle\Service\DatasourceProvider:
+        class: Lle\BiBundle\Service\DatasourceProvider
+        public: true
+        arguments:
+            - !tagged_iterator lle_bi.datasource
