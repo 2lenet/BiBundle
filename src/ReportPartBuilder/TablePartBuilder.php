@@ -4,38 +4,35 @@ namespace Lle\BiBundle\ReportPartBuilder;
 use Lle\BiBundle\Contracts\DatasourceInterface;
 use Lle\BiBundle\Contracts\ReportPartBuilderInterface;
 use Lle\BiBundle\Entity\ReportPart;
+use voilab\tctable\plugin\FitColumn;
+use voilab\tctable\plugin\StripeRows;
+use voilab\tctable\TcTable;
 
 class TablePartBuilder implements ReportPartBuilderInterface
 {
     public function genPdf(\TCPDF &$pdf, ReportPart $part, ?DatasourceInterface $data): void
     {
+        $fields = $data->getFields();
         $minRowHeight = 6; //mm
+        $tctable = new TcTable($pdf, $minRowHeight);
 
-        $tctable = new \voilab\tctable\TcTable($pdf, $minRowHeight);
-        $tctable->setColumns([
-            'col1' => [
-                'isMultiLine' => true,
-                'header' => 'Description',
-                'width' => 100
-                // check inline documentation to see what options are available.
-                // Basically, it's everything TCPDF Cell and MultiCell can eat.
-            ],
-            'col2' => [
-                'header' => 'Quantity',
-                'width' => 20,
-                'align' => 'R'
-            ],
-        ]);
+        $cols = [];
+        foreach ($fields as $field) {
+            $cols[$field->getCode()] = [
+                "header"=>$field->getLibelle(),
+                "align"=>$field->getAlign(),
+                "width"=>100,
+            ];
+        }
+        $tctable->addPlugin(new FitColumn(end($fields)->getCode()));
+        $tctable->setColumns($cols);
 
         // get rows data
         $rows = $data->getDatas();
 
         // draw body
-        $tctable->addBody($rows, function (\voilab\tctable\TcTable $table, \MyObj $row) {
-            return [
-                'col1' => $row["col1"],
-                'col2' => $row["col2"],
-            ];
+        $tctable->addBody($rows, function (TcTable $table, $row) {
+            return $row;
         });
 
     }

@@ -29,6 +29,7 @@ class ReportBuilderTest extends TestCase
         $part2 = new ReportPart();
         $part2->setTitle("Tableau de données");
         $part2->setPartBuilderFqcn(TablePartBuilder::class);
+        $part2->setDatasourceFqcn(Dummy::class);
         $report->addPart($part2);
 
         $pdf = new \TCPDF();

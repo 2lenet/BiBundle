@@ -19,6 +19,6 @@ class Dummy implements \Lle\BiBundle\Contracts\DatasourceInterface
 
     function getFields(): array
     {
-        return ["col1"=>new FieldDto(), "col2"=>new FieldDto()];
+        return ["col1"=>new FieldDto("col1", "Politesse"), "col2"=>new FieldDto("col2","Prénom")];
     }
 }

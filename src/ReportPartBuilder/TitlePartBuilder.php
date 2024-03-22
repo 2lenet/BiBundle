@@ -10,6 +10,7 @@ class TitlePartBuilder implements ReportPartBuilderInterface
     public function genPdf(\TCPDF &$pdf, ReportPart $part, ?DatasourceInterface $data): void
     {
         $pdf->Cell(100,10, $part->getTitle());
+        $pdf->Ln();
         // TODO: Implement genPdf() method.
     }
 
