@@ -2,8 +2,10 @@
 
 namespace Lle\BiBundle\Contracts;
 
+use Lle\BiBundle\Entity\ReportPart;
+
 interface ReportPartBuilderInterface
 {
-    public function genPdf(\TCPDF &$pdf): void;
-    public function renderHtml(): string;
+    public function genPdf(\TCPDF &$pdf, ReportPart $part): void;
+    public function renderHtml(ReportPart $part): string;
 }

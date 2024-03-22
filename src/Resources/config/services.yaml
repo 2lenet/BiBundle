@@ -10,5 +10,4 @@ services:
         class: Lle\BiBundle\Service\PartBuilderProvider
         public: true
         arguments:
-            - '@doctrine.orm.entity_manager'
             - !tagged_iterator lle_bi.part_builder

@@ -1,6 +1,9 @@
 <?php
+namespace Lle\BiBundle\ReportPartBuilder;
 
-class CountPartBuilder implements \Lle\BiBundle\Contracts\ReportPartBuilderInterface
+use Lle\BiBundle\Contracts\ReportPartBuilderInterface;
+
+class CountPartBuilder implements ReportPartBuilderInterface
 {
     public function genPdf(\TCPDF &$pdf): void
     {
