@@ -12,7 +12,8 @@
         "doctrine/doctrine-bundle": "^2.10",
         "symfony/security-bundle": "^6.0",
         "doctrine/persistence": "^3.2",
-        "tecnickcom/tcpdf": "^6.7"
+        "tecnickcom/tcpdf": "^6.7",
+        "voilab/tctable": "1.*"
     },
     "autoload": {
         "psr-4": {
